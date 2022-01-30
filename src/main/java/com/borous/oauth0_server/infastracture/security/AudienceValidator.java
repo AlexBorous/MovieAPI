@@ -1,4 +1,4 @@
-package com.borous.oauth0_server.security;
+package com.borous.oauth0_server.infastracture.security;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-public class AudienceValidator implements OAuth2TokenValidator<Jwt> {
+class AudienceValidator implements OAuth2TokenValidator<Jwt> {
     private final String audience;
 
     public AudienceValidator(String audience) {

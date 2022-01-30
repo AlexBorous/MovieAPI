@@ -1,4 +1,4 @@
-package com.borous.oauth0_server.security;
+package com.borous.oauth0_server.infastracture.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
