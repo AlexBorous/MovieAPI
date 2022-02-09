@@ -12,7 +12,7 @@ import java.util.List;
 class AudienceValidator implements OAuth2TokenValidator<Jwt> {
     private final String audience;
 
-    public AudienceValidator(String audience) {
+    AudienceValidator(String audience) {
         Assert.hasText(audience, "audience is null or empty");
         this.audience = audience;
     }

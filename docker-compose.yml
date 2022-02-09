@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  movie-api:
+    container_name: movie-api
+    build: .
+    image: movie-api:latest
+    ports:
+      - '7000:7000'
+    depends_on:
+      - redis-server
+
+  redis-server:
+    image: "redis:alpine"
+    container_name: redis-server
+    environment:
+      - REDIS_PASSWORD=password
+      - REDIS_PORT_NUMBER=6379
+    ports:
+      - "6379:6379"
