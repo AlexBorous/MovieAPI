@@ -8,7 +8,12 @@ import java.util.Optional;
 
 public interface MovieRepository {
     Optional<Movie> findById(BigInteger id);
-    Optional<List<Movie>> findAll();
 
-    void save(Movie favoriteMovie);
+    Optional<List<Movie>> findAll(String userId);
+
+    void save(Movie favoriteMovie, String userId);
+
+    Optional<Movie> findByMovieId(BigInteger movieId);
+
+    void upsertMovie(Movie movie, String userId);
 }

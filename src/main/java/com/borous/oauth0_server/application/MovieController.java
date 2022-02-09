@@ -1,25 +1,41 @@
 package com.borous.oauth0_server.application;
 
-import org.springframework.http.ResponseEntity;
+import com.borous.oauth0_server.domain.model.Movie;
+import com.borous.oauth0_server.domain.service.MovieService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/movie")
-public class MovieController {
+@Slf4j
+class MovieController {
+    private final MovieService movieService;
 
-    @GetMapping
-    public ResponseEntity<String> findAll() {
-        System.out.println("order");
-        return ResponseEntity.ok().body("items");
+    @Autowired
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
+
+    @GetMapping()
+    public MovieApiResponse findAll(@Nullable @RequestParam String user) {
+        List<Movie> movies = movieService.getAllMovies(user);
+        return new MovieApiResponse(movies);
     }
 
     @GetMapping("/{id}")
-    public String find(@PathVariable("id") Long id) {
-        return "item";
+    public MovieApiResponse find(@PathVariable("id") BigInteger id) {
+        return new MovieApiResponse(List.of(movieService.getMovie(id)));
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody String item) {
-        return ResponseEntity.ok(item);
+    public MovieApiResponse addMovie(@RequestBody MovieApiRequest movie) {
+        log.info("Request came " + movie);
+        movieService.addMovie(movie.getMovie(), movie.getUserId());
+        return new MovieApiResponse(List.of(movie.getMovie()));
     }
 }

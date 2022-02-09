@@ -1,11 +1,15 @@
 package com.borous.oauth0_server.domain.service;
 
-import com.borous.oauth0_server.domain.dto.MovieDto;
-import org.springframework.stereotype.Service;
+import com.borous.oauth0_server.domain.model.Movie;
 
 import java.math.BigInteger;
+import java.util.List;
+
 
 public interface MovieService {
-    BigInteger addFavoriteMovie(MovieDto movieDto);
+    void addMovie(Movie movie, String userId);
 
+    List<Movie> getAllMovies(String userId);
+
+    Movie getMovie(BigInteger id);
 }
