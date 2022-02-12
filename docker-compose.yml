@@ -9,6 +9,7 @@ services:
       - '7000:7000'
     depends_on:
       - redis-server
+      - rabbitmq
 
   redis-server:
     image: "redis:alpine"
@@ -18,3 +19,8 @@ services:
       - REDIS_PORT_NUMBER=6379
     ports:
       - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
