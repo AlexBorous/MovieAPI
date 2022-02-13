@@ -24,6 +24,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
+    implementation 'me.paulschwarz:spring-dotenv:2.4.1'
     implementation 'com.puppycrawl.tools:checkstyle:9.3'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
